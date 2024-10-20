@@ -1,91 +1,179 @@
 import 'package:flutter/material.dart';
-import 'package:profile/more.dart';
+import 'package:profile/dashboard.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: home(),
+      home: const Login(),
     ));
 
-class home extends StatelessWidget {
-  const home({super.key});
+class Login extends StatelessWidget {
+  const Login({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Profile Page',
+      theme: ThemeData(
+        useMaterial3: true,
+      ),
+      home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController schoolController = TextEditingController();
+  final TextEditingController aboutController = TextEditingController();
+  final TextEditingController historyController = TextEditingController();
+  final TextEditingController skillController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("image/bg.jpeg"), fit: BoxFit.cover)),
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.shortestSide,
-                  padding: EdgeInsets.all(90.0),
-                  margin: EdgeInsets.only(top: 10.0),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                    color: Color.fromRGBO(255, 255, 255, 1),
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.only(top: 30.0), // Padding atas
-                          child: CircleAvatar(
-                            radius: 60.0,
-                            backgroundImage: AssetImage('image/elsa3.jpg'),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                          top: 10.0), 
-                          child: Text(
-                            "Elsa Salsa Billa",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 18, color: Colors.black),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                            top: 5.0,
-                          ),
-                          child: Text(
-                            "Vocational High School Student at SMK Wikrama Bogor",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 16, color: Color(0xFFA87676)),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 20.0, right: 30.0),
-                          child: Align(
-                            alignment:
-                                Alignment.centerRight, 
-                            child: TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          Detail()),
-                                );
-                              },
-                              child: Text(
-                                "See more ->",
-                                style: TextStyle(
-                                    fontSize: 16, color: Color(0xFFFF8787)),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      backgroundColor: const Color(0xFFEDDFE0),
+      body: Center(
+        child: Stack(
+          alignment: Alignment.topCenter,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10.0),
+              child: Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                margin: const EdgeInsets.all(50),
+                child: Padding(
+                  padding: const EdgeInsets.all(40.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const SizedBox(height: 20),
+                      Row(
+                        children: [
+                          const Icon(Icons.person), // Ikon di luar form
+                          const SizedBox(width: 20), // Jarak diperbesar menjadi 20
+                          Expanded(
+                            child: TextFormField(
+                              controller: nameController,
+                              decoration: const InputDecoration(
+                                labelText: "Name",
                               ),
                             ),
                           ),
+                        ],
+                      ),
+                      const SizedBox(height: 15),
+                      Row(
+                        children: [
+                          const Icon(Icons.school),
+                          const SizedBox(width: 20),
+                          Expanded(
+                            child: TextFormField(
+                              controller: schoolController,
+                              decoration: const InputDecoration(
+                                labelText: "School",
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 15),
+                      Row(
+                        children: [
+                          const Icon(Icons.info),
+                          const SizedBox(width: 20),
+                          Expanded(
+                            child: TextFormField(
+                              controller: aboutController,
+                              decoration: const InputDecoration(
+                                labelText: "About",
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 15),
+                      Row(
+                        children: [
+                          const Icon(Icons.history),
+                          const SizedBox(width: 20),
+                          Expanded(
+                            child: TextFormField(
+                              controller: historyController,
+                              decoration: const InputDecoration(
+                                labelText: "History",
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 15),
+                      Row(
+                        children: [
+                          const Icon(Icons.build),
+                          const SizedBox(width: 20),
+                          Expanded(
+                            child: TextFormField(
+                              controller: skillController,
+                              decoration: const InputDecoration(
+                                labelText: "Skill",
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Dashboard(
+                                name: nameController.text,
+                                school: schoolController.text,
+                                about: aboutController.text,
+                                history: historyController.text,
+                                skill: skillController.text,
+                              ),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFE7CCCC),
+                          foregroundColor: Colors.white,
                         ),
-                      ],
-                    ),
+                        child: const Text("Login"),
+                      ),
+                    ],
                   ),
-                )
-              ],
-            )));
+                ),
+              ),
+            ),
+            CircleAvatar(
+              radius: 50,
+              backgroundColor: const Color(0xFFEF1D3CE),
+              child: const Icon(
+                Icons.person,
+                size: 50,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

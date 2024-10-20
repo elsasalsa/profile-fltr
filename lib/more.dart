@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Detail(),
-    ));
-
 class Detail extends StatelessWidget {
-  const Detail({super.key});
+  final String? name;
+  final String? about;
+  final String? history;
+  final String? skill;
+
+  const Detail({super.key, this.name, this.about, this.history, this.skill});
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +21,14 @@ class Detail extends StatelessWidget {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(height: 50),
+                  SizedBox(height: 30),
                   CircleAvatar(
                     radius: 60.0,
                     backgroundImage: AssetImage('assets/image/elsa3.jpg'),
                   ),
                   SizedBox(height: 15),
                   Text(
-                    "Elsa Salsa Billa",
+                    name ?? "No Name", // Menggunakan nilai name dari parameter
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 18, color: Colors.black),
                   ),
@@ -64,7 +64,7 @@ class Detail extends StatelessWidget {
                             ),
                             SizedBox(height: 8),
                             Text(
-                              "My name is Elsa Salsa Billa, born in Bogor on February 3 2007. I am a student at SMK Wikrama Bogor majoring in Software and Games Development",
+                              about ?? "No about available", // Menggunakan nilai about
                               style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.white,
@@ -98,7 +98,7 @@ class Detail extends StatelessWidget {
                             ),
                             SizedBox(height: 8),
                             Text(
-                              "SMK Wikrama Bogor ( 2022 - 2025 )",
+                              history ?? "No history available", // Menggunakan nilai history
                               style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.black,
@@ -116,13 +116,21 @@ class Detail extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      color: Color(0xFFCA8787),
-                      child: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
+                      color: Colors.white,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            padding: EdgeInsets.all(14.0),
+                            decoration: BoxDecoration(
+                              color: Color(0xFFCA8787),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(15),
+                                topRight: Radius.circular(15),
+                              ),
+                            ),
+                            child: Text(
                               "Skill",
                               style: TextStyle(
                                 fontSize: 20,
@@ -130,30 +138,18 @@ class Detail extends StatelessWidget {
                                 color: Colors.white,
                               ),
                             ),
-                            SizedBox(height: 8),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment
-                                  .spaceAround, // Atur jarak antar gambar
-                              children: [
-                                CircleAvatar(
-                                  radius: 30.0,
-                                  backgroundImage:
-                                      AssetImage('image/velcpy.png'),
-                                ),
-                                CircleAvatar(
-                                  radius: 30.0,
-                                  backgroundImage:
-                                      AssetImage('image/phpcpy.png'),
-                                ),
-                                CircleAvatar(
-                                  radius: 30.0,
-                                  backgroundImage:
-                                      AssetImage('image/reactcpy.png'),
-                                ),
-                              ],
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(16.0),
+                            child: Text(
+                              skill ?? "No skill available", // Menggunakan nilai skill
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
